@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros | NeedFix</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page" style="display: block; overflow-y: auto;">
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo" onclick="location.href='index.html'">
+                <span class="logo-need">need</span><span class="logo-fix">fix</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-item">INICIO</a>
+                <a href="nosotros.html" class="nav-item" style="color: var(--primary-neon);">SOBRE NOSOTROS</a>
+                <a href="faq.html" class="nav-item">AYUDA</a>
+                <div class="button-bg nav-btn-size">
+                    <a href="login.html" class="btn-inner nav-padding">
+                        <i class="fa-regular fa-circle-user"></i> Mi Cuenta
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header style="padding: 100px 5% 50px; text-align: center;">
+        <h1 style="font-size: 3rem; margin-bottom: 10px;">Nuestra <span class="logo-fix">Misión</span></h1>
+        <p style="color: #ccc; max-width: 700px; margin: 0 auto; font-size: 1.1rem;">
+            Conectamos hogares y empresas con los mejores expertos técnicos de la ciudad, 
+            garantizando confianza, rapidez y calidad en cada reparación.
+        </p>
+    </header>
+
+    <main style="padding: 0 5% 100px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
+            
+            <div class="glass-card" style="text-align: center;">
+                <i class="fas fa-shield-halved" style="font-size: 3rem; color: var(--primary-neon); margin-bottom: 20px;"></i>
+                <h3 style="margin-bottom: 15px;">Seguridad Primero</h3>
+                <p style="color: #bbb; line-height: 1.6;">Validamos la identidad y experiencia de cada técnico en nuestra plataforma para tu total tranquilidad.</p>
+            </div>
+
+            <div class="glass-card" style="text-align: center;">
+                <i class="fas fa-bolt" style="font-size: 3rem; color: #FF00C7; margin-bottom: 20px;"></i>
+                <h3 style="margin-bottom: 15px;">Rapidez Express</h3>
+                <p style="color: #bbb; line-height: 1.6;">Nuestro sistema inteligente localiza al experto más cercano a tu ubicación para una atención inmediata.</p>
+            </div>
+
+            <div class="glass-card" style="text-align: center;">
+                <i class="fas fa-star" style="font-size: 3rem; color: #FFD700; margin-bottom: 20px;"></i>
+                <h3 style="margin-bottom: 15px;">Calidad Garantizada</h3>
+                <p style="color: #bbb; line-height: 1.6;">El sistema de valoraciones asegura que solo los mejores profesionales permanezcan en nuestra red.</p>
+            </div>
+
+        </div>
+
+        <div class="glass-card" style="max-width: 1200px; margin: 50px auto 0; display: flex; align-items: center; flex-wrap: wrap; gap: 40px;">
+            <div style="flex: 1; min-width: 300px;">
+                <h2 style="color: var(--primary-neon); margin-bottom: 20px;">¿Por qué nació NeedFix?</h2>
+                <p style="color: #ddd; line-height: 1.8; margin-bottom: 15px;">
+                    En Monterrey, encontrar un técnico confiable solía ser una moneda al aire. <b>NeedFix</b> nació para eliminar esa incertidumbre, creando una comunidad donde el talento técnico y la necesidad del cliente se encuentran en un entorno digital seguro y moderno.
+                </p>
+                <div class="button-bg" style="display: inline-flex; width: auto;">
+    <a href="registro.html?role=tecnico" class="btn-inner" style="padding: 12px 30px; text-decoration: none;">
+        <i class="fas fa-tools" style="margin-right: 10px;"></i> Únete como experto
+    </a>
+</div>
+            </div>
+            <div style="flex: 1; min-width: 300px; text-align: center;">
+                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=500&q=80" 
+                     alt="Trabajo en equipo" 
+                     style="width: 100%; border-radius: 15px; box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);">
+            </div>
+        </div>
+    </main>
+
+    <footer style="text-align: center; padding: 40px; border-top: 1px solid var(--glass-border); color: #666;">
+        <p>&copy; 2026 NeedFix Technology. Todos los derechos reservados.</p>
+    </footer>
+<script>
+    window.onload = function() {
+        // Revisa si la URL tiene "?role=tecnico"
+        const urlParams = new URLSearchParams(window.location.search);
+        const role = urlParams.get('role');
+
+        if (role === 'tecnico') {
+            // Aquí ejecutamos la función que ya tengas para cambiar el rol en el diseño
+            // Por ejemplo, si tienes una función setRole:
+            if (typeof setRole === "function") {
+                setRole('tecnico');
+            } else {
+                // Si usas un selector simple, lo marcamos:
+                const selector = document.getElementById('user-role');
+                if(selector) selector.value = 'tecnico';
+            }
+            console.log("Modo registro: Experto activado");
+        }
+    };
+</script>
+</body>
+</html>

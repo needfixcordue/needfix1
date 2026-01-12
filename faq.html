@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes | NeedFix</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo-container" onclick="location.href='index.html'" style="cursor:pointer;">
+            <img src="img/logo.png" alt="NeedFix Logo" class="nav-logo-img">
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-item">INICIO</a>
+                <a href="nosotros.html" class="nav-item">NOSOTROS</a>
+                <a href="faq.html" class="nav-item" style="color: var(--primary-neon);">AYUDA</a>
+                <div class="button-bg nav-btn-size">
+                    <a href="login.html" class="btn-inner">
+                        <i class="fa-regular fa-circle-user"></i> Mi Cuenta
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header style="padding: 120px 5% 40px; text-align: center;">
+        <h1 style="font-size: 2.5rem; margin-bottom: 10px;">Centro de <span class="logo-fix">Ayuda</span></h1>
+        <p style="color: #ccc;">Resolvemos tus dudas para que tu experiencia sea impecable.</p>
+    </header>
+
+    <main style="padding: 0 5% 100px; max-width: 900px; margin: 0 auto;">
+        
+        <div class="faq-container" style="display: flex; flex-direction: column; gap: 20px;">
+            
+            <div class="glass-card faq-item" style="padding: 0; overflow: hidden; cursor: pointer;">
+                <div class="faq-question" style="padding: 25px; display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="font-size: 1.1rem; color: var(--primary-neon);">¿Cómo solicito un técnico?</h3>
+                    <i class="fas fa-chevron-down" style="transition: 0.3s;"></i>
+                </div>
+                <div class="faq-answer" style="max-height: 0; padding: 0 25px; color: #bbb; transition: all 0.4s ease; overflow: hidden;">
+                    <p style="padding-bottom: 25px;">Es muy sencillo: desde el inicio selecciona el oficio que necesitas (plomero, electricista, etc.), ingresa tu código postal y elige al experto que mejor se adapte a tus necesidades basándote en sus calificaciones.</p>
+                </div>
+            </div>
+
+            <div class="glass-card faq-item" style="padding: 0; overflow: hidden; cursor: pointer;">
+                <div class="faq-question" style="padding: 25px; display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="font-size: 1.1rem; color: var(--primary-neon);">¿Los técnicos están verificados?</h3>
+                    <i class="fas fa-chevron-down" style="transition: 0.3s;"></i>
+                </div>
+                <div class="faq-answer" style="max-height: 0; padding: 0 25px; color: #bbb; transition: all 0.4s ease; overflow: hidden;">
+                    <p style="padding-bottom: 25px;">Sí. Todos los técnicos en NeedFix pasan por un proceso de validación de identidad y deben presentar comprobantes de experiencia antes de ser admitidos en la plataforma.</p>
+                </div>
+            </div>
+
+            <div class="glass-card faq-item" style="padding: 0; overflow: hidden; cursor: pointer;">
+                <div class="faq-question" style="padding: 25px; display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="font-size: 1.1rem; color: var(--primary-neon);">¿Tengo que pagar por usar la plataforma?</h3>
+                    <i class="fas fa-chevron-down" style="transition: 0.3s;"></i>
+                </div>
+                <div class="faq-answer" style="max-height: 0; padding: 0 25px; color: #bbb; transition: all 0.4s ease; overflow: hidden;">
+                    <p style="padding-bottom: 25px;">Para los clientes, buscar y contactar expertos es totalmente gratuito. El pago del servicio se acuerda directamente con el técnico una vez finalizado el trabajo.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 60px; display: flex; flex-direction: column; align-items: center;">
+    <p style="margin-bottom: 20px; color: #999;">¿Aún tienes dudas?</p>
+    
+    <div class="button-bg" style="display: inline-flex; width: auto;">
+        <button onclick="abrirSoporte()" class="btn-inner" style="padding: 12px 30px; font-size: 1rem; cursor: pointer; border: none; background: #1a1a1a; color: white;">
+            <i class="fas fa-headset" style="margin-right: 10px;"></i> Hablar con Soporte
+        </button>
+    </div>
+</div>
+</div>
+        </a>
+    </div>
+</div>
+    </main>
+
+    <script>
+        
+        // Lógica para el acordeón
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                const icon = item.querySelector('.fa-chevron-down');
+                
+                // Cerrar otros
+                document.querySelectorAll('.faq-answer').forEach(el => {
+                    if(el !== answer) el.style.maxHeight = null;
+                });
+                document.querySelectorAll('.fa-chevron-down').forEach(el => {
+                    if(el !== icon) el.style.transform = 'rotate(0deg)';
+                });
+
+                // Toggle actual
+                if (answer.style.maxHeight) {
+                    answer.style.maxHeight = null;
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+        function abrirSoporte() {
+        console.log("Botón presionado: abriendo modal..."); // Esto aparecerá en la consola (F12)
+        const modal = document.getElementById('soporte-modal');
+        if (modal) {
+            modal.style.display = 'flex';
+        } else {
+            console.error("Error: No se encontró el elemento 'soporte-modal'");
+        }
+    }
+
+    function cerrarSoporte() {
+        document.getElementById('soporte-modal').style.display = 'none';
+    }
+
+    // Cerrar al hacer clic fuera del cuadro
+    window.onclick = function(event) {
+        const modal = document.getElementById('soporte-modal');
+        if (event.target == modal) {
+            cerrarSoporte();
+        }
+    }
+    </script>
+<div id="soporte-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content glass-card">
+        <span class="close-modal" onclick="cerrarSoporte()">&times;</span>
+        <i class="fas fa-headset contact-icon" style="color: var(--primary-neon); font-size: 3rem; margin-bottom: 15px;"></i>
+        <h3 style="color: white; margin-bottom: 10px;">Soporte <span class="logo-fix">NeedFix</span></h3>
+        <p style="color: #ccc; margin-bottom: 25px;">¿Cómo podemos ayudarte hoy?</p>
+        
+        <div class="contact-options" style="display: flex; flex-direction: column; gap: 15px;">
+            <a href="https://wa.me/5211234567890?text=Hola,%20necesito%20ayuda%20con%20NeedFix" class="contact-link whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp Directo
+            </a>
+            <a href="mailto:soporte@needfix.com" class="contact-link phone">
+                <i class="fas fa-envelope"></i> Enviar Correo
+            </a>
+            <a href="tel:1234567890" class="contact-link" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid var(--glass-border);">
+                <i class="fas fa-phone"></i> Llamada Telefónica
+            </a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

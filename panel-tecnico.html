@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Técnico | NeedFix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page" style="align-items: flex-start; padding: 20px;">
+
+    <div class="w-full max-w-4xl mx-auto">
+        <div class="bg-white/80 backdrop-blur-md rounded-xl p-6 mb-6 shadow-xl flex justify-between items-center border border-white/20">
+            <div class="flex items-center gap-4">
+                <div class="h-16 w-16 bg-indigo-600 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                    JP
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800">¡Bienvenido, Juan Pérez!</h1>
+                    <span class="text-sm bg-green-100 text-green-700 px-2 py-1 rounded-full font-bold">Plomero Certificado • Online</span>
+                </div>
+            </div>
+            <button onclick="location.href='login.html'" class="text-gray-500 hover:text-red-500 transition-colors">
+                <i class="fas fa-sign-out-alt text-xl"></i>
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div class="bg-white/80 backdrop-blur-md p-4 rounded-xl shadow-lg border border-white/20 text-center">
+                <p class="text-gray-500 text-xs uppercase font-bold tracking-widest">Trabajos Hoy</p>
+                <h2 class="text-3xl font-black text-indigo-600">3</h2>
+            </div>
+            <div class="bg-white/80 backdrop-blur-md p-4 rounded-xl shadow-lg border border-white/20 text-center">
+                <p class="text-gray-500 text-xs uppercase font-bold tracking-widest">Calificación</p>
+                <h2 class="text-3xl font-black text-yellow-500">4.9 <i class="fas fa-star text-sm"></i></h2>
+            </div>
+            <div class="bg-white/80 backdrop-blur-md p-4 rounded-xl shadow-lg border border-white/20 text-center">
+                <p class="text-gray-500 text-xs uppercase font-bold tracking-widest">Ganancias Mes</p>
+                <h2 class="text-3xl font-black text-green-600">$12,400</h2>
+            </div>
+        </div>
+
+        <div id="lista-solicitudes" class="bg-white/80 backdrop-blur-md rounded-xl shadow-2xl border border-white/20 overflow-hidden">
+            <div class="p-6 border-b border-gray-100 flex justify-between items-center">
+                <h3 class="font-bold text-gray-800">Solicitudes Pendientes</h3>
+                <span class="animate-pulse flex h-3 w-3 rounded-full bg-red-500"></span>
+            </div>
+            
+            <div class="divide-y divide-gray-100">
+                <div id="card-1" class="p-6 hover:bg-white/50 transition-colors flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div class="flex gap-4">
+                        <div class="bg-blue-100 text-blue-600 p-3 rounded-lg h-fit">
+                            <i class="fas fa-faucet text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Reparación de Fuga Directa</h4>
+                            <p class="text-sm text-gray-500">Cliente: <strong>Laura Madero</strong></p>
+                            <p class="text-xs text-gray-400"><i class="fas fa-map-marker-alt"></i> San Pedro, Garza García (A 3km)</p>
+                            <p class="mt-2 text-xs bg-indigo-100 text-indigo-600 w-fit px-2 py-1 rounded font-bold uppercase">Servicio Express</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-2" id="actions-1">
+                        <button onclick="aceptarTrabajo(1, 'Laura Madero', '5512345678')" class="px-4 py-2 bg-green-600 text-white rounded-lg font-bold text-sm hover:bg-green-700 transition-all active:scale-95">Aceptar</button>
+                        <button class="px-4 py-2 border border-gray-300 text-gray-600 rounded-lg font-bold text-sm hover:bg-gray-100 transition-all">Detalles</button>
+                    </div>
+                </div>
+
+                <div id="card-2" class="p-6 hover:bg-white/50 transition-colors flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div class="flex gap-4">
+                        <div class="bg-purple-100 text-purple-600 p-3 rounded-lg h-fit">
+                            <i class="fas fa-tools text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Instalación de Boiler</h4>
+                            <p class="text-sm text-gray-500">Cliente: <strong>Ricardo Sosa</strong></p>
+                            <p class="text-xs text-gray-400"><i class="fas fa-map-marker-alt"></i> Col. Tecnológico (A 5km)</p>
+                            <p class="mt-2 text-xs bg-purple-100 text-purple-600 w-fit px-2 py-1 rounded font-bold uppercase">Proyecto</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-2" id="actions-2">
+                        <button onclick="aceptarTrabajo(2, 'Ricardo Sosa', '5598765432')" class="px-4 py-2 bg-green-600 text-white rounded-lg font-bold text-sm hover:bg-green-700 transition-all active:scale-95">Aceptar</button>
+                        <button class="px-4 py-2 border border-gray-300 text-gray-600 rounded-lg font-bold text-sm hover:bg-gray-100 transition-all">Detalles</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-cliente" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;">
+        <div class="bg-white p-8 rounded-2xl max-w-sm w-full text-center shadow-2xl">
+            <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">¡Trabajo Aceptado!</h2>
+            <p class="text-gray-500 mb-6 text-sm">Ponte en contacto con <span id="nombre-cliente" class="font-bold"></span> para coordinar la llegada.</p>
+            
+            <div class="flex flex-col gap-3">
+                <a id="link-whatsapp" href="#" target="_blank" class="bg-[#25D366] text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:brightness-110 transition-all">
+                    <i class="fab fa-whatsapp text-xl"></i> Enviar WhatsApp
+                </a>
+                <button onclick="cerrarModalCliente()" class="text-gray-400 text-sm font-semibold hover:text-gray-600">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function aceptarTrabajo(id, cliente, telefono) {
+            // 1. Mostrar el Modal con los datos dinámicos
+            document.getElementById('nombre-cliente').innerText = cliente;
+            document.getElementById('link-whatsapp').href = `https://wa.me/${telefono}?text=Hola%20${cliente},%20soy%20Juan%20Perez%20de%20NeedFix.%20He%20aceptado%20tu%20solicitud.`;
+            document.getElementById('modal-cliente').style.display = 'flex';
+
+            // 2. Modificar la tarjeta visualmente
+            const actions = document.getElementById(`actions-${id}`);
+            const card = document.getElementById(`card-${id}`);
+            
+            card.style.background = "rgba(255, 255, 255, 0.4)";
+            actions.innerHTML = `
+                <span class="px-4 py-2 bg-indigo-100 text-indigo-600 rounded-lg font-bold text-sm flex items-center gap-2">
+                    <i class="fas fa-spinner animate-spin"></i> En curso
+                </span>
+            `;
+        }
+
+        function cerrarModalCliente() {
+            document.getElementById('modal-cliente').style.display = 'none';
+        }
+
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal-cliente');
+            if (event.target == modal) {
+                cerrarModalCliente();
+            }
+        }
+    </script>
+</body>
+</html>

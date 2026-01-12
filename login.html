@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | NeedFix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+
+    <div class="w-full max-w-sm rounded-xl bg-white/80 backdrop-blur-md border border-white/20 p-8 mx-2 shadow-2xl">
+        <div class="py-2 flex justify-center">
+            <a href="index.html">
+                <img src="img/logo.png" width="45" height="45">
+            </a>
+        </div>
+        
+        <h1 id="login-title" class="mb-2 text-center text-2xl font-bold text-gray-800">Login Cliente</h1>
+        
+        <div class="flex bg-gray-200/50 p-1 rounded-lg mb-6 mt-4">
+            <button onclick="setRole('cliente')" id="btn-cliente" class="flex-1 py-2 text-sm font-bold rounded-md transition-all bg-white text-indigo-600 shadow-sm">
+                Soy Cliente
+            </button>
+            <button onclick="setRole('tecnico')" id="btn-tecnico" class="flex-1 py-2 text-sm font-bold rounded-md transition-all text-gray-500 hover:text-gray-700">
+                Soy Técnico
+            </button>
+        </div>
+
+        <form onsubmit="handleLogin(event)">
+            <input type="hidden" id="user-role" value="cliente">
+
+            <div class="mb-4">
+                <label class="mb-1 block text-sm font-semibold text-gray-600">Email</label>
+                <input type="email" required placeholder="correo@ejemplo.com"
+                    class="py-2.5 w-full rounded-lg border border-gray-300 bg-white/50 px-4 focus:ring-2 focus:ring-indigo-500 outline-none transition-all">
+            </div>
+            
+            <div class="mb-4">
+                <label class="mb-1 block text-sm font-semibold text-gray-600">Contraseña</label>
+                <input type="password" required placeholder="********"
+                    class="py-2.5 w-full rounded-lg border border-gray-300 bg-white/50 px-4 focus:ring-2 focus:ring-indigo-500 outline-none transition-all">
+            </div>
+
+            <button type="submit" class="py-3 font-bold w-full rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-all active:scale-95 shadow-lg">
+                Ingresar al Sistema
+            </button>
+        </form>
+                  <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">
+            ¿No tienes cuenta? <a href="registro.html" style="color: var(--primary-neon); text-decoration: none;">Registrate</a>
+        </p>
+        <div class="relative my-6 text-center">
+            <div class="absolute top-1/2 left-0 h-px w-full bg-gray-300"></div>
+            <span class="relative z-10 bg-transparent px-3 text-[10px] font-bold text-gray-400 uppercase tracking-widest">O entrar con</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+    <button type="button" id="btn-google" onclick="loginSocial('Google')"
+        class="relative flex py-2.5 items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white text-gray-700 text-sm hover:bg-gray-50 transition-all shadow-md active:scale-95 overflow-hidden">
+        <div id="spinner-google" class="hidden absolute inset-0 flex items-center justify-center bg-white z-20">
+            <div class="animate-spin rounded-full h-5 w-5 border-2 border-indigo-500 border-t-transparent"></div>
+        </div>
+        <img src="https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png" width="18" id="icon-google"> 
+        <span class="font-bold" id="text-google">Google</span>
+    </button>
+
+    <button type="button" id="btn-apple" onclick="loginSocial('Apple')"
+        class="relative flex py-2.5 items-center justify-center gap-2 rounded-lg bg-black text-white text-sm hover:bg-zinc-800 transition-all shadow-md active:scale-95 overflow-hidden">
+        <div id="spinner-apple" class="hidden absolute inset-0 flex items-center justify-center bg-black z-20">
+            <div class="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
+        </div>
+        <i class="fab fa-apple text-lg" id="icon-apple"></i>
+        <span class="font-bold" id="text-apple">Apple ID</span>
+        
+    </button>
+    
+</div>
+    </div>
+
+    <script>
+        function setRole(role) {
+            const title = document.getElementById('login-title');
+            const roleInput = document.getElementById('user-role');
+            const btnCliente = document.getElementById('btn-cliente');
+            const btnTecnico = document.getElementById('btn-tecnico');
+
+            roleInput.value = role;
+
+            if (role === 'cliente') {
+                title.innerText = "Login Cliente";
+                btnCliente.className = "flex-1 py-2 text-sm font-bold rounded-md transition-all bg-white text-indigo-600 shadow-sm";
+                btnTecnico.className = "flex-1 py-2 text-sm font-bold rounded-md transition-all text-gray-500 hover:text-gray-700";
+            } else {
+                title.innerText = "Login Técnico";
+                btnTecnico.className = "flex-1 py-2 text-sm font-bold rounded-md transition-all bg-white text-indigo-600 shadow-sm";
+                btnCliente.className = "flex-1 py-2 text-sm font-bold rounded-md transition-all text-gray-500 hover:text-gray-700";
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const role = document.getElementById('user-role').value;
+            alert("Iniciando sesión como: " + role.toUpperCase());
+            // Aquí podrías redirigir a paneles diferentes:
+            window.location.href = role === 'cliente' ? 'panel-cliente.html' : 'panel-tecnico.html';
+        }
+        function loginSocial(plataforma) {
+    const role = document.getElementById('user-role').value;
+    const id = plataforma.toLowerCase();
+    
+    // Elementos visuales
+    const spinner = document.getElementById(`spinner-${id}`);
+    const btn = document.getElementById(`btn-${id}`);
+    
+    // 1. Mostrar carga y bloquear botón
+    spinner.classList.remove('hidden');
+    btn.style.pointerEvents = 'none'; // Evita múltiples clics
+    
+    console.log(`Conectando con la API de ${plataforma}...`);
+
+    // 2. Simulación de red (2 segundos)
+    setTimeout(() => {
+        // Ocultar carga
+        spinner.classList.add('hidden');
+        btn.style.pointerEvents = 'auto';
+
+        // 3. Redirección basada en rol
+        if(role === 'tecnico') {
+            window.location.href = 'panel-tecnico.html';
+             
+        } else {
+            
+            // Guardamos en sessionStorage que el usuario está logueado
+           window.location.href = 'panel-cliente.html';
+        }
+    }, 2000);
+    
+}
+
+    </script>
+</body>
+</html>

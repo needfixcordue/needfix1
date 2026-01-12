@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeedFix | Expertos a un click</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+   <nav class="navbar">
+    <div class="nav-content">
+        <div class="logo-container" onclick="location.href='index.html'" style="cursor:pointer;">
+            <img src="img/logo.png" alt="NeedFix Logo" class="nav-logo-img">
+            </div>
+
+        <div class="nav-links">
+            <!--a href="index.html" class="nav-item">Inicio</a-->
+            <!--a href="servicios.html" class="nav-item">Servicios</a-->
+            <div class="button-bg nav-btn-size">
+                    <a href="login.html" class="btn-inner nav-padding">
+                        <i class="fa-regular fa-circle-user"></i> Mi Cuenta
+                    </a>
+                </div>
+        </div>
+    </div>
+</nav>
+
+    <main class="hero">
+        <div class="hero-overlay"></div> <div class="search-container">
+            <h1 class="hero-title">Encuentra al experto ideal</h1>
+            <p class="hero-subtitle">Solicita servicios express o proyectos a medida en segundos.</p>
+            
+            <form class="search-bar">
+                <div class="input-box">
+                    <label>Oficio</label>
+                    <select id="service-type">
+                        <option value="plomero">Plomero</option>
+                        <option value="electricista">Electricista</option>
+                        <option value="carpintero">Carpintero</option>
+                        <option value="herrero">Herrero</option>
+                        <option value="Climas">Instalación/reparación/mantenimiento Climas</option>
+                        <option value="Limpieza residencial ">Limpieza residencial</option>
+                    </select>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="input-box">
+                    <label>Tipo de Servicio</label>
+                    <select id="service-mode">
+                        <option value="express">Express (1 día)</option>
+                        <option value="proyecto">Proyecto (Indefinido)</option>
+                    </select>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="input-box">
+                    <label>Código Postal</label>
+                    <input type="text" id="zip-code" placeholder="Ej. 64000" maxlength="5">
+                </div>
+
+                <div class="button-bg">
+                    <button type="button" class="btn-inner main-padding" onclick="enviar()">
+                        <i class="fas fa-search"></i> Enviar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <section id="results-section" class="results-container" style="display: none;">
+    <div class="results-header">
+        <h2>Expertos disponibles en tu zona</h2>
+        <button onclick="location.reload()" class="btn-back"> <i class="fas fa-arrow-left"></i> Nueva búsqueda</button>
+    </div>
+    
+    <div class="experts-grid" id="expert-list">
+        
+    </div>
+    </section>
+<section id="project-details-section" class="details-container" style="display: none;">
+    <div class="form-card">
+        <h2>Cuéntanos sobre tu proyecto</h2>
+        <p>Necesitamos algunos detalles adicionales para encontrarte el presupuesto ideal.</p>
+        
+        <form id="project-form">
+            <div class="input-group">
+                <label>Descripción del trabajo</label>
+                <textarea id="project-desc" placeholder="Ej: Necesito remodelar la cocina, incluye cambio de tuberías y azulejos..."></textarea>
+            </div>
+            
+            <div class="row">
+                <div class="input-group">
+                    <label>Medidas / Mts2 (Opcional)</label>
+                    <input type="text" id="project-size" placeholder="Ej: 20m2">
+                </div>
+                <div class="input-group">
+                    <label>Urgencia</label>
+                    <select id="project-urgency">
+                        <option value="baja">No tengo prisa</option>
+                        <option value="media">Próximas 2 semanas</option>
+                        <option value="alta">Lo antes posible</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="button-bg">
+                <button type="button" class="btn-inner main-padding" onclick="finalizarProyecto()">
+                    <i class="fas fa-paper-plane"></i> Publicar Proyecto
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+<section id="results" style="display:none; padding: 50px; text-align: center;">
+    <h2>Expertos disponibles cerca de ti</h2>
+    <div id="expert-list">
+        </div>
+</section>
+<div id="contact-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <span class="close-modal" onclick="cerrarModal()">&times;</span>
+        <i class="fas fa-id-card-alt contact-icon"></i>
+        <h3>Contactar a <span id="expert-name-modal">Juan Pérez</span></h3>
+        <p>Elige el método de contacto de tu preferencia:</p>
+        
+        <div class="contact-options">
+            <a href="https://wa.me/1234567890" class="contact-link whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="tel:+1234567890" class="contact-link phone">
+                <i class="fas fa-phone-alt"></i> Llamar Directo
+            </a>
+        </div>
+    </div>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>

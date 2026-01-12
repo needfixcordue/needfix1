@@ -1,0 +1,426 @@
+:root {
+    --primary-blue: #007bff;
+    --dark-gray: #1f2937;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    min-height: 100vh;
+    
+    /* CONFIGURACIÓN DEL FONDO UNIFICADO */
+    background: 
+        linear-gradient(rgba(15, 15, 26, 0.9), rgba(15, 15, 26, 0.9)), /* Capa oscura */
+        url('img/fondo.png'); /* Tu imagen */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* El fondo se queda quieto al hacer scroll */
+    background-repeat: no-repeat;
+}
+
+/* --- ANIMACIÓN DE BRILLO (Compartida) --- */
+@keyframes shine {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.button-bg {
+    background: conic-gradient(from 0deg, #00F5FF, #FF00C7, #FFD700, #00FF85, #8A2BE2, #00F5FF);
+    background-size: 300% 300%;
+    animation: shine 4s ease-out infinite;
+    padding: 2.5px;
+    border-radius: 50px;
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.button-bg:hover { transform: scale(1.05); }
+
+.btn-inner {
+    background-color: var(--dark-gray);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+    position: fixed;
+    top: 0; width: 100%; z-index: 1000;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    background: rgba(15, 15, 26, 0.9) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 12px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo { font-size: 1.4rem; font-weight: 800; cursor: pointer; }
+.logo-fix { color: var(--primary-blue); }
+.logo-ext { color: #9ca3af; font-size: 0.8rem; font-weight: 400; }
+
+.nav-links { display: flex; align-items: center; gap: 30px; }
+.nav-item { text-decoration: none; color: #4b5563; font-size: 0.85rem; font-weight: 700; }
+.nav-padding { padding: 8px 18px; font-size: 13px; }
+
+/* --- HERO & SEARCH BAR --- */
+.hero {
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.hero-title { margin-bottom: 30px; font-size: 2.5rem; font-weight: 800; color: #fff; }
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 10px 12px 10px 30px;
+    border-radius: 100px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.input-box { display: flex; flex-direction: column; padding-right: 25px; }
+.input-box label { font-size: 10px; font-weight: 800; color: #9ca3af; text-transform: uppercase; margin-bottom: 2px; }
+.input-box select, .input-box input { border: none; outline: none; font-size: 15px; color: #374151; background: transparent; }
+
+.divider { width: 1px; height: 35px; background: #e5e7eb; margin-right: 25px; }
+.main-padding { padding: 14px 35px; font-size: 15px; }
+
+/* --- FOOTER --- */
+footer { text-align: center; padding: 40px; color: #9ca3af; font-size: 0.8rem; }
+
+/* Responsive */
+@media (max-width: 850px) {
+    .search-bar { flex-direction: column; border-radius: 25px; padding: 30px; width: 90%; }
+    .divider { display: none; }
+    .input-box { width: 100%; padding: 0; margin-bottom: 20px; text-align: center; }
+    .button-bg { width: 100%; justify-content: center; }
+    .btn-inner { width: 100%; justify-content: center; }
+    .nav-links { display: none; }
+}
+.results-container {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 20px;
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.experts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.expert-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    border: 1px solid #eee;
+}
+
+.expert-card:hover { transform: translateY(-5px); }
+
+.expert-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #00FF85;
+    color: #064e3b;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.expert-info { padding: 25px; text-align: center; }
+
+.expert-avatar { font-size: 50px; color: #d1d5db; margin-bottom: 15px; }
+
+.expert-trade { color: var(--primary-blue); font-weight: 700; font-size: 14px; margin: 5px 0; }
+
+.expert-rating { color: #f59e0b; font-size: 14px; margin-bottom: 15px; }
+.expert-rating span { color: #9ca3af; font-size: 12px; }
+
+.expert-desc { font-size: 13px; color: #6b7280; margin-bottom: 20px; line-height: 1.5; }
+
+.btn-back { border: none; background: none; color: var(--primary-blue); cursor: pointer; font-weight: 700; }
+.details-container {
+    max-width: 700px;
+    margin: 100px auto;
+    padding: 20px;
+}
+
+.form-card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.input-group label {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--dark-gray);
+}
+
+.input-group textarea, 
+.input-group input, 
+.input-group select {
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    font-family: inherit;
+}
+
+.input-group textarea { height: 120px; resize: none; }
+
+.row { display: flex; gap: 20px; }
+
+@media (max-width: 600px) {
+    .row { flex-direction: column; }
+}
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    animation: modalIn 0.3s ease-out;
+}
+
+@keyframes modalIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 25px; cursor: pointer; color: #9ca3af;
+}
+
+.contact-icon { font-size: 40px; color: var(--primary-blue); margin-bottom: 15px; }
+
+.contact-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.contact-link {
+    padding: 15px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: filter 0.2s;
+}
+
+.whatsapp { background: #25d366; color: white; }
+.phone { background: var(--dark-gray); color: white; }
+.contact-link:hover { filter: brightness(1.1); }
+.fav-btn {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    color: #d1d5db;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.fav-btn.active {
+    color: #ff4757;
+    transform: scale(1.1);
+}
+
+.fav-btn:hover {
+    transform: scale(1.2);
+}
+/* Contenedor de pantalla completa con gradiente animado */
+.login-page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Los colores del efecto RGB */
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientRGB 15s ease infinite;
+}
+
+/* Animación del movimiento del fondo */
+@keyframes gradientRGB {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Opcional: Un toque de cristal para el formulario */
+.backdrop-blur-sm {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+/* Modifica la clase login-page para que sea más flexible */
+.login-page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top, #1a1a2e 0%, #0f0f1a 100%);
+    /* Permitimos scroll si el contenido es largo */
+    overflow-y: auto; 
+}
+
+/* Estilo para las tarjetas de la sección nosotros */
+/* Ajuste para que las tarjetas de cristal resalten sobre el nuevo fondo */
+.glass-card, .login-card, .modal-content {
+    background: var(--glass) !important;
+    backdrop-filter: blur(15px) !important;
+    border: 1px solid var(--glass-border) !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6) !important;
+}
+/* --- AJUSTE DINÁMICO DEL LOGO --- */
+.logo-container {
+    display: flex;
+    align-items: center;
+    height: 100%; /* Se ajusta a los 80px del navbar */
+    max-width: 180px; /* Limita el ancho máximo para que no choque con el menú */
+}
+
+.nav-logo-img {
+    height: 50px; /* Tamaño ideal para un header de 80px */
+    width: auto;  /* Mantiene la proporción original */
+    object-fit: contain; /* Evita que la imagen se deforme */
+    transition: transform 0.3s ease;
+}
+
+.nav-logo-img:hover {
+    transform: scale(1.05); /* Efecto sutil al pasar el mouse */
+}
+
+/* Si usas texto junto al logo, dale espacio */
+.logo-need {
+    margin-left: 10px;
+}
+
+/* Estilos para el Modal de Soporte */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: none; /* Se cambia a 'flex' con JS */
+    justify-content: center;
+    align-items: center;
+    z-index: 10001;
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    padding: 30px;
+    text-align: center;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 25px;
+    color: white;
+    cursor: pointer;
+}
+
+.contact-link {
+    display: block;
+    padding: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.whatsapp { background: #25d366; color: white; }
+.phone { background: var(--primary-neon, #00f5ff); color: black; }

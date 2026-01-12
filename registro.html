@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro | NeedFix</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+
+    <div class="glass-card" style="max-width: 500px; width: 95%; padding: 40px;">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <h1 style="font-size: 2rem;">Crear <span class="logo-fix">Cuenta</span></h1>
+            <p style="color: #ccc;">Únete a la red de expertos más grande</p>
+        </div>
+
+        <div style="margin-bottom: 25px;">
+            <label style="display: block; color: var(--primary-neon); margin-bottom: 10px; font-size: 0.9rem;">¿CÓMO TE UNES?</label>
+            <select id="user-role" onchange="toggleCampos()" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border); border-radius: 8px; color: white; outline: none;">
+                <option value="cliente" style="background: #1a1a1a;">Soy Cliente (Busco ayuda)</option>
+                <option value="tecnico" style="background: #1a1a1a;">Soy Técnico (Ofrezco servicios)</option>
+            </select>
+        </div>
+
+        <form id="form-registro" onsubmit="registrar(event)" style="display: flex; flex-direction: column; gap: 15px;">
+            <input type="text" placeholder="Nombre Completo" required class="input-neon">
+            <input type="email" placeholder="Correo Electrónico" required class="input-neon">
+            <input type="password" placeholder="Contraseña" required class="input-neon">
+
+            <div id="campos-tecnico" style="display: none; flex-direction: column; gap: 15px;">
+                <select class="input-neon">
+                    <option value="" disabled selected>Selecciona tu Oficio</option>
+                    <option value="plomero">Plomero</option>
+                    <option value="electricista">Electricista</option>
+                    <option value="carpintero">Carpintero</option>
+                </select>
+                <input type="text" placeholder="Ciudad / Código Postal" class="input-neon">
+            </div>
+
+           <div style="display: flex; justify-content: center; margin-top: 20px;">
+    <div class="button-bg" style="display: inline-flex; width: auto; min-width: 250px;">
+        <button type="submit" class="btn-inner" style="width: 100%; border: none; padding: 12px 25px; cursor: pointer; font-weight: bold; font-size: 1rem;">
+            REGISTRARME AHORA
+        </button>
+    </div>
+</div>
+        </form>
+
+        <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">
+            ¿Ya tienes cuenta? <a href="login.html" style="color: var(--primary-neon); text-decoration: none;">Inicia Sesión</a>
+        </p>
+    </div>
+
+    <script>
+        // Función para mostrar/ocultar campos según el rol
+        function toggleCampos() {
+            const role = document.getElementById('user-role').value;
+            const camposExtra = document.getElementById('campos-tecnico');
+            
+            if (role === 'tecnico') {
+                camposExtra.style.display = 'flex';
+            } else {
+                camposExtra.style.display = 'none';
+            }
+        }
+
+        // Lógica para detectar si viene de "Únete como experto"
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('role') === 'tecnico') {
+                document.getElementById('user-role').value = 'tecnico';
+                toggleCampos();
+            }
+        }
+
+        function registrar(e) {
+            e.preventDefault();
+            alert("¡Registro exitoso! Bienvenido a NeedFix.");
+            window.location.href = 'login.html';
+        }
+    </script>
+
+    <style>
+        .input-neon {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+        .input-neon:focus {
+            border-color: var(--primary-neon);
+            box-shadow: 0 0 10px rgba(0, 245, 255, 0.2);
+        }
+    </style>
+</body>
+</html>
