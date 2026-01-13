@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Master Panel - NeedFix</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        if (sessionStorage.getItem('isAdmin') !== 'true') {
+            window.location.href = 'admin-access.html';
+        }
+    </script>
+</head>
+<body class="login-page" style="justify-content: flex-start; padding: 30px;">
+
+    <div style="width: 100%; max-width: 1100px; margin: 0 auto;">
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+            <div>
+                <h1>Panel <span style="color: #00F5FF;">Maestro</span></h1>
+                <p style="color: #9ca3af;">Gestión de Técnicos y Expertos</p>
+            </div>
+            <div style="display: flex; gap: 15px;">
+                <div class="button-bg">
+                    <button onclick="abrirCreador()" class="btn-inner" style="background: #2ed573; color: white;">
+                        <i class="fas fa-plus"></i> NUEVO EXPERTO
+                    </button>
+                </div>
+                <div class="button-bg">
+                    <button onclick="sessionStorage.clear(); location.href='admin-access.html'" class="btn-inner">
+                        CERRAR SESIÓN
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="glass-card" style="padding: 20px; border: 1px solid rgba(0, 245, 255, 0.2);">
+            <table style="width: 100%; color: white; border-collapse: collapse;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #00F5FF; text-align: left;">
+                        <th style="padding: 15px;">Experto</th>
+                        <th style="padding: 15px;">Oficio</th>
+                        <th style="padding: 15px; text-align: center;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="listaAdmin"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="modalExperto" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; justify-content: center; align-items: center;">
+        <div class="glass-card" style="padding: 30px; width: 90%; max-width: 400px; border: 1px solid #00F5FF;">
+            <h3 id="modalTitle" style="color: #00F5FF; margin-bottom: 20px;">Nuevo Experto</h3>
+            <input type="hidden" id="editIndex">
+            
+            <div class="input-group">
+                <label>Nombre Completo</label>
+                <input type="text" id="formNombre" class="input-neon" style="margin-bottom: 15px;" placeholder="Ej: Juan Pérez">
+            </div>
+            <div class="input-group">
+                <label>Oficio / Especialidad</label>
+                <input type="text" id="formOficio" class="input-neon" placeholder="Ej: Plomero">
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 25px;">
+                <button onclick="guardarDatos()" class="btn-inner" style="background: #00F5FF; color: #000; flex: 1; justify-content: center; font-weight: bold;">ACEPTAR</button>
+                <button onclick="cerrarModal()" class="btn-inner" style="flex: 1; justify-content: center;">CANCELAR</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Base de datos temporal
+        let expertos = [
+            {nombre: "Juan Pérez", oficio: "Plomero"},
+            {nombre: "Marta Gómez", oficio: "Electricista"}
+        ];
+
+        function render() {
+            const body = document.getElementById('listaAdmin');
+            body.innerHTML = "";
+            expertos.forEach((exp, i) => {
+                body.innerHTML += `
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <td style="padding: 15px; font-weight: 500;">${exp.nombre}</td>
+                        <td style="padding: 15px;"><span class="expert-badge" style="background: rgba(0,245,255,0.1); border: 1px solid #00F5FF; padding: 2px 10px; border-radius: 10px; font-size: 0.8rem;">${exp.oficio}</span></td>
+                        <td style="padding: 15px; text-align: center;">
+                            <button onclick="abrirEditor(${i})" style="background:none; border:none; color:#00F5FF; cursor:pointer; margin-right: 15px; font-size: 1.1rem;">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button onclick="borrar(${i})" style="background:none; border:none; color:#ff4757; cursor:pointer; font-size: 1.1rem;">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>`;
+            });
+        }
+
+        // ABRIR PARA CREAR NUEVO
+        function abrirCreador() {
+            document.getElementById('editIndex').value = "-1"; // Marcador para "nuevo"
+            document.getElementById('modalTitle').innerText = "Nuevo Experto";
+            document.getElementById('formNombre').value = "";
+            document.getElementById('formOficio').value = "";
+            document.getElementById('modalExperto').style.display = 'flex';
+        }
+
+        // ABRIR PARA EDITAR EXISTENTE
+        function abrirEditor(i) {
+            document.getElementById('editIndex').value = i;
+            document.getElementById('modalTitle').innerText = "Editar Experto";
+            document.getElementById('formNombre').value = expertos[i].nombre;
+            document.getElementById('formOficio').value = expertos[i].oficio;
+            document.getElementById('modalExperto').style.display = 'flex';
+        }
+
+        function cerrarModal() {
+            document.getElementById('modalExperto').style.display = 'none';
+        }
+
+        // GUARDAR (CREAR O EDITAR)
+        function guardarDatos() {
+            const i = document.getElementById('editIndex').value;
+            const nombre = document.getElementById('formNombre').value;
+            const oficio = document.getElementById('formOficio').value;
+
+            if(nombre === "" || oficio === "") {
+                alert("Por favor rellena todos los campos");
+                return;
+            }
+
+            if (i === "-1") {
+                // Es un nuevo registro
+                expertos.push({nombre: nombre, oficio: oficio});
+            } else {
+                // Es una edición
+                expertos[i].nombre = nombre;
+                expertos[i].oficio = oficio;
+            }
+
+            cerrarModal();
+            render();
+        }
+
+        function borrar(i) {
+            if(confirm("¿Estás seguro de eliminar a este experto?")) {
+                expertos.splice(i, 1);
+                render();
+            }
+        }
+
+        render();
+    </script>
+</body>
+</html>
