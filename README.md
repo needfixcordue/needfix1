@@ -1,0 +1,1 @@
+PARA ACCEDER AL PANEL ADMIN HAY QUE INGRESAR EN LA BARRA DE NUSQUEDA EJEMPLO http://127.0.0.1:5500/"admin-acces.html" (sin las comillas)
