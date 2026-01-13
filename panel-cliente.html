@@ -9,83 +9,87 @@
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo" onclick="location.href='index.html'">
-                <span class="logo-need">need</span><span class="logo-fix">fix</span>
+<nav class="nav-wrapper">
+    <div class="navbar-new">
+        <a href="index.html" class="logo-pill">
+            <div class="logo-badge">
+                <img src="img/logo.png" alt="NeedFix Logo" class="nav-logo-img">
             </div>
-            <div class="nav-links">
-                <a href="index.html" class="nav-item">Buscar Expertos</a>
-                <a href="faq.html" class="nav-item">Ayuda</a>
-                <div class="button-bg">
-                    <a href="index.html" class="btn-inner" style="padding: 8px 15px;">
-                        <i class="fas fa-sign-out-alt"></i> Salir
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
+        </a>
 
-    <main style="padding: 40px 5%; max-width: 1200px; margin: 0 auto;">
+        <div class="nav-menu-desktop">
+            <a href="panel-cliente.html" class="nav-link-pill">
+                <span class="link-text">Mi Panel</span>
+                <span class="link-text-hover">Mi Panel</span>
+            </a>
+            <a href="buscar.html" class="nav-link-pill">
+                <span class="link-text">Buscar Experto</span>
+                <span class="link-text-hover">Buscar Experto</span>
+            </a>
+        </div>
+
+        <button id="menuToggle" class="mobile-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div id="mobileMenu" class="mobile-menu-dropdown">
+            <a href="panel-cliente.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="buscar.html"><i class="fas fa-search"></i> Buscar</a>
+            <a href="favoritos.html"><i class="fas fa-heart"></i> Favoritos</a>
+            <hr style="border-color: rgba(255,255,255,0.1)">
+            <a href="logout.html" style="color: #ff4757;"><i class="fas fa-sign-out-alt"></i> Salir</a>
+        </div>
+    </div>
+</nav>
+
+    <main class="results-container">
+    <div class="results-header">
+        <h1>Bienvenido, <span id="user-name">Usuario</span></h1>
+        <p class="expert-badge">Cliente Verificado</p>
+    </div>
+
+    <div class="expert-card glass-card">
+    <div class="expert-info">
+        <i class="fas fa-search expert-avatar"></i>
+        <h3>¿Necesitas un servicio?</h3>
+        <p class="expert-desc">Busca expertos cerca de ti.</p>
         
-        <header style="margin-bottom: 40px;">
-            <h1 style="font-size: 2rem;">Hola, <span style="color: var(--primary-neon);">Usuario</span> 👋</h1>
-            <p style="color: #ccc;">Gestiona tus solicitudes y técnicos favoritos.</p>
-        </header>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px;">
-            <div class="glass-card" style="text-align: center; padding: 20px;">
-                <i class="fas fa-hammer" style="color: var(--primary-neon); font-size: 1.5rem; margin-bottom: 10px;"></i>
-                <h2 style="font-size: 1.8rem;">2</h2>
-                <p style="font-size: 0.8rem; color: #999; text-transform: uppercase;">Servicios Activos</p>
-            </div>
-            <div class="glass-card" style="text-align: center; padding: 20px;">
-                <i class="fas fa-star" style="color: #FFD700; font-size: 1.5rem; margin-bottom: 10px;"></i>
-                <h2 style="font-size: 1.8rem;">12</h2>
-                <p style="font-size: 0.8rem; color: #999; text-transform: uppercase;">Favoritos</p>
-            </div>
-            <div class="glass-card" style="text-align: center; padding: 20px;">
-                <i class="fas fa-check-circle" style="color: var(--accent-green); font-size: 1.5rem; margin-bottom: 10px;"></i>
-                <h2 style="font-size: 1.8rem;">5</h2>
-                <p style="font-size: 0.8rem; color: #999; text-transform: uppercase;">Completados</p>
+        <div style="display: flex; justify-content: center; width: 100%;">
+            <div class="button-bg">
+                <a href="buscar.html" class="btn-inner">Buscar Ahora</a>
             </div>
         </div>
+    </div>
+</div>
 
-        <section>
-            <h2 style="margin-bottom: 20px; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
-                <i class="fas fa-list-ul" style="color: var(--secondary-neon);"></i> Tus Solicitudes Recientes
-            </h2>
 
-            <div style="display: flex; flex-direction: column; gap: 15px;">
-                <div class="glass-card" style="display: flex; justify-content: space-between; align-items: center; padding: 20px;">
-                    <div>
-                        <h4 style="color: var(--primary-neon); margin-bottom: 5px;">Reparación de Tubería</h4>
-                        <p style="font-size: 0.9rem; color: #bbb;"><i class="fas fa-user-tie"></i> Técnico: Juan Pérez</p>
-                        <span style="font-size: 0.75rem; background: rgba(0, 245, 255, 0.1); color: var(--primary-neon); padding: 3px 10px; border-radius: 10px; margin-top: 10px; display: inline-block;">
-                            EN CURSO
-                        </span>
-                    </div>
-                    <div class="button-bg">
-                        <button class="btn-inner" style="padding: 10px 20px;">Chat</button>
-                    </div>
-                </div>
-
-                <div class="glass-card" style="display: flex; justify-content: space-between; align-items: center; padding: 20px;">
-                    <div>
-                        <h4 style="color: var(--primary-neon); margin-bottom: 5px;">Instalación Eléctrica</h4>
-                        <p style="font-size: 0.9rem; color: #bbb;"><i class="fas fa-user-tie"></i> Técnico: Pendiente</p>
-                        <span style="font-size: 0.75rem; background: rgba(255, 255, 255, 0.1); color: #fff; padding: 3px 10px; border-radius: 10px; margin-top: 10px; display: inline-block;">
-                            BUSCANDO EXPERTO...
-                        </span>
-                    </div>
-                    <div style="opacity: 0.5;">
-                        <button class="btn-inner" style="background: #222; cursor: not-allowed;">Esperando</button>
-                    </div>
-                </div>
+    <div class="expert-card glass-card">
+    <div class="expert-info">
+        <i class="fas fa-history expert-avatar"></i> <h3>Mis Solicitudes</h3>
+        <p class="expert-desc">Revisa el estado de tus servicios contratados.</p>
+        
+        <div style="display: flex; justify-content: center;">
+            <div class="button-bg">
+                <a href="historial.html" class="btn-inner">
+                    <i class="fas fa-list-ul"></i> Ver Historial
+                </a>
             </div>
-        </section>
+        </div>
+    </div>
+</div>
+</main>
 
-    </main>
+<nav class="mobile-bottom-nav">
+    <div class="nav-item-mobile active">
+        <a href="panel-cliente.html"><i class="fas fa-th-large"></i><span>Panel</span></a>
+    </div>
+    <div class="nav-item-mobile">
+        <a href="buscar.html"><i class="fas fa-search"></i><span>Buscar</span></a>
+    </div>
+    <div class="nav-item-mobile">
+        <a href="favoritos.html"><i class="fas fa-heart"></i><span>Favoritos</span></a>
+    </div>
+</nav>
 
 </body>
 </html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeedFix - Buscar Expertos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="nav-wrapper">
+        <div class="navbar-new">
+            <a href="index.html" class="logo-pill">
+                <div class="logo-badge">
+                    <img src="img/logo.png" alt="NeedFix Logo" class="nav-logo-img">
+                </div>
+            </a>
+            <div class="nav-menu-desktop">
+                <a href="panel-cliente.html" class="nav-link-pill">
+                    <span class="link-text">Mi Panel</span>
+                    <span class="link-text-hover">Mi Panel</span>
+                </a>
+            </div>
+            <button id="menuToggle" class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div id="mobileMenu" class="mobile-menu-dropdown">
+                <a href="panel-cliente.html">Mi Panel</a>
+                <a href="index.html">Inicio</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="results-container">
+        <div class="hero-title" style="text-align: center; margin-bottom: 40px;">
+            <h2 style="font-size: 2rem;">Encuentra al <span class="logo-fix">Experto</span> Ideal</h2>
+        </div>
+
+        <form class="search-bar">
+                <div class="input-box">
+                    <label>Oficio</label>
+                    <select id="service-type">
+                        <option value="plomero">Plomero</option>
+                        <option value="electricista">Electricista</option>
+                        <option value="carpintero">Carpintero</option>
+                        <option value="herrero">Herrero</option>
+                        <option value="Climas">Instalación/reparación/mantenimiento Climas</option>
+                        <option value="Limpieza residencial ">Limpieza residencial</option>
+                    </select>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="input-box">
+                    <label>Tipo de Servicio</label>
+                    <select id="service-mode">
+                        <option value="express">Express (1 día)</option>
+                        <option value="proyecto">Proyecto (Indefinido)</option>
+                    </select>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="input-box">
+                    <label>Código Postal</label>
+                    <input type="text" id="zip-code" placeholder="Ej. 64000" maxlength="5">
+                </div>
+
+                <div class="button-bg">
+                    <button type="button" class="btn-inner main-padding" onclick="enviar()">
+                        <i class="fas fa-search"></i> Enviar
+                    </button>
+                </div>
+            </form> 
+
+        <section id="results-section" style="display: none;">
+            <div class="results-header">
+                <h3>Expertos disponibles</h3>
+                <button class="btn-back" onclick="location.reload()"><i class="fas fa-sync"></i> Nueva búsqueda</button>
+            </div>
+            <div id="expert-list" class="experts-grid">
+                </div>
+        </section>
+    </main>
+
+    <div id="contact-modal" class="modal-overlay">
+        <div class="modal-content glass-card">
+            <span class="close-modal" onclick="cerrarModal()">&times;</span>
+            <i class="fas fa-user-check contact-icon"></i>
+            <h3 id="expert-name-modal">Nombre del Experto</h3>
+            <p>¿Cómo prefieres contactar?</p>
+            <div class="contact-options">
+                <a href="#" class="contact-link whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="#" class="contact-link phone"><i class="fas fa-phone"></i> Llamada</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

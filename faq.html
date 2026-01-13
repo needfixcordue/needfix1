@@ -9,23 +9,49 @@
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo-container" onclick="location.href='index.html'" style="cursor:pointer;">
-            <img src="img/logo.png" alt="NeedFix Logo" class="nav-logo-img">
-            </div>
-            <div class="nav-links">
-                <a href="index.html" class="nav-item">INICIO</a>
-                <a href="nosotros.html" class="nav-item">NOSOTROS</a>
-                <a href="faq.html" class="nav-item" style="color: var(--primary-neon);">AYUDA</a>
-                <div class="button-bg nav-btn-size">
-                    <a href="login.html" class="btn-inner">
-                        <i class="fa-regular fa-circle-user"></i> Mi Cuenta
-                    </a>
-                </div>
+    <div class="nav-wrapper">
+    <nav class="navbar-new">
+        <a href="index.html" class="logo-pill">
+           <img src="img/logo.png" alt="NeedFix Logo" class="nav-logo-img">
+        </a>
+
+        <div class="nav-menu-desktop">
+            <a href="index.html" class="nav-link-pill group">
+                <span class="link-text">Inicio</span>
+                <span class="link-text-hover">Inicio</span>
+            </a>
+            <a href="nosotros.html" class="nav-link-pill group">
+                <span class="link-text">Nosotros</span>
+                <span class="link-text-hover">Nosotros</span>
+            </a>
+            <a href="faq.html" class="nav-link-pill group">
+                <span class="link-text">Ayuda</span>
+                <span class="link-text-hover">Ayuda</span>
+            </a>
+        </div>
+
+        <div class="nav-btns-desktop">
+            <button class="btn-contact-outline" onclick="abrirSoporte()">Soporte</button>
+            <div class="button-bg">
+                <a href="registro.html" class="btn-inner nav-padding">REGISTRARSE</a>
             </div>
         </div>
+
+        <button class="mobile-toggle" onclick="toggleMenu(event)">
+        <i id="menuIcon" class="fas fa-bars"></i>
+    </button>
+
+    <div id="mobileMenu" class="mobile-menu-dropdown">
+        <a href="index.html">Inicio</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="faq.html">Ayuda</a>
+        <hr style="border: 0.5px solid rgba(255,255,255,0.1); width: 100%;">
+        <a href="login.html" class="btn-login-mobile">Iniciar Sesión</a>
+    </div>
+
     </nav>
+</div>
+<div class="nav-spacer"></div>
 
     <header style="padding: 120px 5% 40px; text-align: center;">
         <h1 style="font-size: 2.5rem; margin-bottom: 10px;">Centro de <span class="logo-fix">Ayuda</span></h1>
@@ -82,7 +108,7 @@
     </div>
 </div>
     </main>
-
+<script src="script.js"></script>
     <script>
         
         // Lógica para el acordeón
@@ -151,6 +177,32 @@
         </div>
     </div>
 </div>
-
+<div class="mobile-bottom-nav">
+    <div class="nav-item-mobile active">
+        <a href="index.html">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </a>
+    </div>
+    <div class="nav-item-mobile">
+        <a href="nosotros.html">
+            <i class="fas fa-users"></i>
+            <span>Nosotros</span>
+        </a>
+    </div>
+    <div class="nav-item-mobile">
+        <a href="registro.html">
+            <i class="fas fa-user-plus"></i>
+            <span>REGISTRATE</span>
+        </a>
+    </div>
+    <div class="nav-item-mobile">
+        <a href="faq.html">
+            <i class="fas fa-question-circle"></i>
+            <span>Ayuda</span>
+        </a>
+    </div>
+    <div class="nav-indicator"></div>
+</div>
 </body>
 </html>

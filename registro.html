@@ -9,93 +9,122 @@
 </head>
 <body class="login-page">
 
-    <div class="glass-card" style="max-width: 500px; width: 95%; padding: 40px;">
-        <div style="text-align: center; margin-bottom: 30px;">
+    <div class="nav-wrapper">
+    <nav class="navbar-new">
+        <a href="index.html" class="logo-pill">
+            <img src="img/logo.png" alt="NeedFix Logo" class="nav-logo-img">
+        </a>
+
+        <div class="nav-menu-desktop">
+            <a href="index.html" class="nav-link-pill group">
+                <span class="link-text">Inicio</span>
+                <span class="link-text-hover">Inicio</span>
+            </a>
+            <a href="nosotros.html" class="nav-link-pill group">
+                <span class="link-text">Nosotros</span>
+                <span class="link-text-hover">Nosotros</span>
+            </a>
+            <a href="faq.html" class="nav-link-pill group">
+                <span class="link-text">Ayuda</span>
+                <span class="link-text-hover">Ayuda</span>
+            </a>
+        </div>
+
+        <div class="nav-btns-desktop">
+            <button class="btn-contact-outline" onclick="abrirSoporte()">Soporte</button>
+            <div class="button-bg">
+                <a href="registro.html" class="btn-inner nav-padding">REGISTRARSE</a>
+            </div>
+        </div>
+
+        <button id="menuToggle" class="mobile-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+    </nav>
+</div>
+<div class="nav-spacer"></div>
+
+    <div class="nav-spacer" style="height: 80px;"></div>
+
+    <div class="glass-card register-container" style="max-width: 500px; width: 90%; margin: 40px auto; padding: 30px;">
+        <div class="form-header" style="text-align: center; margin-bottom: 30px;">
             <h1 style="font-size: 2rem;">Crear <span class="logo-fix">Cuenta</span></h1>
-            <p style="color: #ccc;">Únete a la red de expertos más grande</p>
+            <p style="color: #9ca3af; font-size: 0.9rem;">Únete a la red de expertos más grande</p>
         </div>
 
-        <div style="margin-bottom: 25px;">
-            <label style="display: block; color: var(--primary-neon); margin-bottom: 10px; font-size: 0.9rem;">¿CÓMO TE UNES?</label>
-            <select id="user-role" onchange="toggleCampos()" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border); border-radius: 8px; color: white; outline: none;">
-                <option value="cliente" style="background: #1a1a1a;">Soy Cliente (Busco ayuda)</option>
-                <option value="tecnico" style="background: #1a1a1a;">Soy Técnico (Ofrezco servicios)</option>
-            </select>
-        </div>
+        <form id="form-registro" class="form-main" style="display: flex; flex-direction: column; gap: 15px;">
+            <div class="input-group">
+                <label class="label-neon" style="font-size: 11px; font-weight: 800; color: var(--primary-blue); margin-bottom: 5px; display: block;">¿CÓMO TE UNES?</label>
+                <select id="user-role" class="input-neon" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 10px;">
+                    <option value="cliente">Soy Cliente (Busco ayuda)</option>
+                    <option value="tecnico">Soy Técnico (Ofrezco servicios)</option>
+                </select>
+            </div>
 
-        <form id="form-registro" onsubmit="registrar(event)" style="display: flex; flex-direction: column; gap: 15px;">
-            <input type="text" placeholder="Nombre Completo" required class="input-neon">
-            <input type="email" placeholder="Correo Electrónico" required class="input-neon">
-            <input type="password" placeholder="Contraseña" required class="input-neon">
+            <input type="text" id="reg-name" placeholder="Nombre Completo" required class="input-neon" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 10px;">
+            <input type="email" id="reg-email" placeholder="Correo Electrónico" required class="input-neon" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 10px;">
+            <input type="password" id="reg-pass" placeholder="Contraseña" required class="input-neon" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 10px;">
 
-            <div id="campos-tecnico" style="display: none; flex-direction: column; gap: 15px;">
-                <select class="input-neon">
+            <div id="campos-tecnico" class="extra-fields" style="display: none; flex-direction: column; gap: 15px;">
+                <select id="reg-oficio" class="input-neon" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 10px;">
                     <option value="" disabled selected>Selecciona tu Oficio</option>
                     <option value="plomero">Plomero</option>
                     <option value="electricista">Electricista</option>
                     <option value="carpintero">Carpintero</option>
                 </select>
-                <input type="text" placeholder="Ciudad / Código Postal" class="input-neon">
+                <input type="text" id="reg-cp" placeholder="Ciudad / Código Postal" class="input-neon" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 10px;">
             </div>
 
-           <div style="display: flex; justify-content: center; margin-top: 20px;">
-    <div class="button-bg" style="display: inline-flex; width: auto; min-width: 250px;">
-        <button type="submit" class="btn-inner" style="width: 100%; border: none; padding: 12px 25px; cursor: pointer; font-weight: bold; font-size: 1rem;">
-            REGISTRARME AHORA
-        </button>
-    </div>
-</div>
+            <div class="terms-wrapper" style="display: flex; align-items: flex-start; gap: 10px; margin: 10px 0; font-size: 0.8rem; color: #ccc;">
+                <input type="checkbox" id="acepto-terminos">
+                <label for="acepto-terminos">
+                    He leído y acepto los <a href="#" style="color: var(--primary-blue);">Términos</a> y <a href="#" style="color: var(--primary-blue);">Privacidad</a>.
+                </label>
+            </div>
+
+            <div class="btn-center" style="display: flex; justify-content: center; margin-top: 10px;">
+                <div id="wrapper-btn" class="button-bg" style="opacity: 0.5; filter: grayscale(1); width: 100%;">
+                    <button type="submit" id="btn-registro" disabled class="btn-inner" style="width: 100%; justify-content: center; padding: 15px;">
+                        <span id="btn-text">REGISTRARME AHORA</span>
+                        <i id="btn-spinner" class="fas fa-spinner fa-spin" style="display: none;"></i>
+                    </button>
+                </div>
+            </div>
         </form>
 
-        <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">
-            ¿Ya tienes cuenta? <a href="login.html" style="color: var(--primary-neon); text-decoration: none;">Inicia Sesión</a>
+        <p class="login-footer" style="text-align: center; margin-top: 20px; font-size: 0.9rem; color: #9ca3af;">
+            ¿Ya tienes cuenta? <a href="login.html" style="color: var(--primary-blue); font-weight: bold; text-decoration: none;">Inicia Sesión</a>
         </p>
     </div>
 
-    <script>
-        // Función para mostrar/ocultar campos según el rol
-        function toggleCampos() {
-            const role = document.getElementById('user-role').value;
-            const camposExtra = document.getElementById('campos-tecnico');
-            
-            if (role === 'tecnico') {
-                camposExtra.style.display = 'flex';
-            } else {
-                camposExtra.style.display = 'none';
-            }
-        }
-
-        // Lógica para detectar si viene de "Únete como experto"
-        window.onload = function() {
-            const params = new URLSearchParams(window.location.search);
-            if (params.get('role') === 'tecnico') {
-                document.getElementById('user-role').value = 'tecnico';
-                toggleCampos();
-            }
-        }
-
-        function registrar(e) {
-            e.preventDefault();
-            alert("¡Registro exitoso! Bienvenido a NeedFix.");
-            window.location.href = 'login.html';
-        }
-    </script>
-
-    <style>
-        .input-neon {
-            width: 100%;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            color: white;
-            outline: none;
-            transition: 0.3s;
-        }
-        .input-neon:focus {
-            border-color: var(--primary-neon);
-            box-shadow: 0 0 10px rgba(0, 245, 255, 0.2);
-        }
-    </style>
+    <script src="script.js"></script>
+    <div class="mobile-bottom-nav">
+    <div class="nav-item-mobile active">
+        <a href="index.html">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </a>
+    </div>
+    <div class="nav-item-mobile">
+        <a href="nosotros.html">
+            <i class="fas fa-users"></i>
+            <span>Nosotros</span>
+        </a>
+    </div>
+    <div class="nav-item-mobile">
+        <a href="registro.html">
+            <i class="fas fa-user-plus"></i>
+            <span>REGISTRATE</span>
+        </a>
+    </div>
+    <div class="nav-item-mobile">
+        <a href="faq.html">
+            <i class="fas fa-question-circle"></i>
+            <span>Ayuda</span>
+        </a>
+    </div>
+    <div class="nav-indicator"></div>
+</div>
 </body>
 </html>
